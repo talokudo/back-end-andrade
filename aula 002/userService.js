@@ -45,6 +45,17 @@ saveUsers(){
                 console.log("Erro", erro);z
             }
         }
+        async addUser (nome, email, senha, endereco, telefone, cpf ) {
+            try {
+const senhacripto = await brcypt.hash(senha, 10);
+const user = new user(this.nextId++, nome, email, senhacripto, endereco);
+this.user.push(user);
+this.saveUsers();
+return user; 
+            } catch (erro){
+                console.log ('erro', erro);
+            }
+        }
 
         getUsers(){
             try{
